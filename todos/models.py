@@ -1,10 +1,10 @@
 from django.db import models
+from django.core.validators import MinLengthValidator
 
 # Create your models here.
 
-
 class Todo(models.Model):
-    title = models.CharField(max_length=64)
+    title = models.CharField(validators=[MinLengthValidator(4)], max_length=64)
     description = models.TextField(max_length=256)
     done = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
@@ -15,3 +15,5 @@ class Todo(models.Model):
 
     class Meta:
         ordering = ['created']
+
+
